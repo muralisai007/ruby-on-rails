@@ -1,0 +1,23 @@
+<h1>Leaves Lists</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Employee ID</th>
+      <th>Leaves Data (JSON)</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @leaveslists.each do |leaveslist| %>
+      <tr>
+        <td><%= leaveslist.employeelist_id %></td>
+        <td><%= leaveslist.leaves_data.to_json %></td>
+        <td><%= link_to 'Show', leaveslist_path(leaveslist) %></td>
+        <td><%= link_to 'Edit', edit_leaveslist_path(leaveslist) %></td>
+        <td><%= link_to 'Destroy', leaveslist_path(leaveslist), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

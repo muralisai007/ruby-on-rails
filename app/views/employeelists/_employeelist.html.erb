@@ -1,0 +1,84 @@
+<% employeelists.each do |employeelist| %>
+  <tr>
+    <td><%= employeelist.first_name %></td>
+    <td><%= employeelist.last_name %></td>
+    <td><%= employeelist.phone_no %></td>
+    <td><%= employeelist.email %></td>
+    <td><%= employeelist.date_of_birth %></td>
+    <td><%= employeelist.aadhaar_input %></td>
+    <td><%= employeelist.designation %></td>
+    <td><%= employeelist.status == 1 ? 'Active' : 'Inactive' %></td>
+    <td><%= employeelist.salary %></td>
+    <td><%= employeelist.extra_leaves %></td>
+    <td><%= employeelist.deductions %></td>
+    <td><%= employeelist.adjusted_salary %></td>
+    <td><%= employeelist.total_annual_salary %></td>
+    <td><%= employeelist.salary_disbursed %></td>
+    <td>
+          <button class="edit-popup btn btn-primary" data-url="<%= edit_employeelist_path(employeelist.id) %>">Edit</button>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<div class="content">
+  <div class="close-btn">×</div>
+  <div id="popup-content"></div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+  function togglePopup() {
+    $(".content").toggle();
+  }
+
+  $(document).on('click', '.edit-popup', function(event) {
+    event.preventDefault();
+    var url = $(this).data('url');
+    $.ajax({
+      url: url,
+      success: function(response) {
+        $('#popup-content').html(response);
+        togglePopup();
+      },
+      error: function(xhr, status, error) {
+        console.error('Error loading popup content:', error);
+        alert('Failed to load content. Please try again.');
+      }
+    });
+  });
+
+  $(document).on('click', '.close-btn', function() {
+    togglePopup();
+  });
+</script>
+
+
+<style type="text/css">
+  .content {
+    position: absolute;
+    top: 90%;
+    left: 60%;
+    transform: translate(-50%, -50%);
+    width: 700px;
+    height: 1100px;
+    text-align: center;
+    background-color: green;
+    box-sizing: border-box;
+    padding: 20px;
+    z-index: 100;
+    display: none;
+  }
+
+  .close-btn {
+    position: absolute;
+    right: 20px;
+    top: 15px;
+    background-color: black;
+    color: white;
+    border-radius: 50%;
+    padding: 4px;
+    cursor: pointer;
+  }
+</style>

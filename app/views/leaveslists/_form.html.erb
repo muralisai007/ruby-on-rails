@@ -1,0 +1,27 @@
+<%= form_with(model: @leaveslist, local: true) do |form| %>
+  <% if @leaveslist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@leaveslist.errors.count, "error") %> prohibited this leaveslist from being saved:</h2>
+
+      <ul>
+      <% @leaveslist.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :employeelist_id %>
+    <%= form.text_field :employeelist_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :leaves_data, "Leaves Data (JSON)", style: "display: block" %>
+    <%= form.text_area :leaves_data, value: @leaveslist.leaves_data.to_json, rows: 20, cols: 50 %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

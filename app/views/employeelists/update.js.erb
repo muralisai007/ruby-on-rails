@@ -1,0 +1,21 @@
+<% if @employeelist.errors.any? %>
+  alert('Failed to update employeelist. Please check the form for errors.');
+<% else %>
+  $('#employeelist-<%= @employeelist.id %>').html(`
+    <p>First Name: <%= j @employeelist.first_name %></p>
+    <p>Last Name: <%= j @employeelist.last_name %></p>
+    <p>Phone No: <%= j @employeelist.phone_no %></p>
+    <p>Email: <%= j @employeelist.email %></p>
+    <p>Date of Birth: <%= j @employeelist.date_of_birth %></p>
+    <p>Aadhaar Input: <%= j @employeelist.aadhaar_input %></p>
+    <p>Designation: <%= j @employeelist.designation %></p>
+    <p>Status: <%= j @employeelist.status %></p>
+    <p>Salary: <%= j @employeelist.salary %></p>
+    <p>Extra Leaves: <%= j @employeelist.extra_leaves %></p>
+    <p>Salary Disbursed: <%= j @employeelist.salary_disbursed %></p>
+    <p>Deductions: <%= j @employeelist.deductions %></p>
+    <p>Adjusted Salary: <%= j @employeelist.adjusted_salary %></p>
+    <p>Total Annual Salary: <%= j @employeelist.total_annual_salary %></p>
+    <%= j button_to "Edit", edit_employeelist_path(@employeelist), remote: true, method: :get %>
+  `);
+<% end %>

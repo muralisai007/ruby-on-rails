@@ -1,0 +1,17 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Leaves List</h1>
+
+<p>
+  <strong>Employee ID:</strong>
+  <%= @leaveslist.employeelist_id %>
+</p>
+
+<p>
+  <strong>Leaves Data (JSON):</strong>
+  <pre><%= JSON.pretty_generate(@leaveslist.leaves_data) %></pre>
+</p>
+
+<%= link_to 'Edit', edit_leaveslist_path(@leaveslist) %> |
+<%= link_to 'Back', leaveslists_path %> |
+<%= link_to 'Delete', @leaveslist, method: :delete, data: { confirm: 'Are you sure?' } %>

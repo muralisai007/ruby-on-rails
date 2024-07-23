@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employees List</title>
+    <script>
+        function openEditPopup(employeelistId) {
+            window.open('/path/to/edit.html?employeelist_id=' + employeelistId, 'Edit Employeelist', 'width=600,height=400');
+        }
+    </script>
+</head>
+<body>
+    <h1>Employees List</h1>
+    <%= form_tag employeelists_path, method: :get do %>
+      <div class="mb-3">
+        <%= text_field_tag :name, params[:name], placeholder: "Name", class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= select_tag :status, options_for_select([["", ""], ["Active", 1], ["Inactive", 0]], params[:status]), class: "form-control" %>
+      </div>
+      <div class="mb-3">
+        <%= number_field_tag :salary, params[:salary], placeholder: "Salary", class: "form-control" %>
+      </div>
+      <%= submit_tag "Filter", class: "btn btn-primary" %>
+      <%= link_to 'New Employee', new_employeelist_path, class: 'btn btn-primary' %>
+    <% end %>
+
+    <table>
+      <thead>
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Phone No</th>
+          <th>Email</th>
+          <th>Date of Birth</th>
+          <th>Aadhaar Input</th>
+          <th>Designation</th>
+          <th>Status</th>
+          <th>Salary</th>
+          <th>Extra Leaves</th>
+          <th>Deductions</th>
+          <th>Adjusted Salary</th>
+          <th>Total Annual Salary</th>
+          <th>Salary Disbursed</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody id="employeelist-list">
+        <%= render partial: 'employeelist', locals: { employeelists: @employeelists } %>
+      </tbody>
+    </table>
+
+    <% total_adjusted_annual_salary = @employeelists.sum { |employeelist| (employeelist.salary.to_f - (employeelist.salary.to_f * 0.025 * employeelist.extra_leaves.to_f)) * 12 } %>
+    <div class="total-salary mt-3">
+      <strong>Total Adjusted Annual Salary Sum: <%= number_to_currency(total_adjusted_annual_salary, unit: "CLP") %></strong>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add event listeners to all edit buttons
+            const editButtons = document.querySelectorAll('.edit-button');
+            editButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const employeelistId = this.dataset.employeelistId;
+                    openEditPopup(employeelistId);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

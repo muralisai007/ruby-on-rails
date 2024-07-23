@@ -1,0 +1,29 @@
+/* app/assets/stylesheets/application.css */
+
+/* app/assets/stylesheets/application.css */
+
+.sidebar {
+  background-color: #007bff; /* Blue background */
+  padding: 15px;
+  height: 100vh; /* Full height */
+  position: fixed;
+  width: 250px; /* Adjust the width as needed */
+}
+
+
+.sidebar .nav-link {
+  color: #000; /* Black text */
+  font-weight: bold;
+}
+
+.sidebar .nav-link:hover {
+  background-color: #e9ecef; /* Slightly darker grey on hover */
+}
+
+.container-fluid .row > .col-md-9 {
+  margin-left: 250px; /* Adjust based on the sidebar width */
+}
+
+.navbar {
+  margin-bottom: 20px; /* Adjust as needed */
+}

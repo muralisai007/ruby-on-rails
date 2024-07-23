@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>View Employeelist</title>
+</head>
+<body>
+  <h1>Employeelist Details</h1>
+
+  <ul>
+    <li><strong>First Name:</strong> <%= @employeelist.first_name %></li>
+    <li><strong>Last Name:</strong> <%= @employeelist.last_name %></li>
+    <li><strong>Phone No:</strong> <%= @employeelist.phone_no %></li>
+    <li><strong>Email:</strong> <%= @employeelist.email %></li>
+    <li><strong>Date of Birth:</strong> <%= @employeelist.date_of_birth.strftime("%Y-%m-%d") %></li>
+    <li><strong>Aadhaar Input:</strong> <%= @employeelist.aadhaar_input %></li>
+    <li><strong>Designation:</strong> <%= @employeelist.designation %></li>
+    <li><strong>Status:</strong> <%= @employeelist.status == 1 ? 'Active' : 'Inactive' %></li>
+    <li><strong>Salary:</strong> <%= @employeelist.salary %></li>
+    <li><strong>Extra Leaves:</strong> <%= @employeelist.extra_leaves %></li>
+    <li><strong>Deductions:</strong> <%= @employeelist.deductions %></li>
+    <li><strong>Adjusted Salary:</strong> <%= @employeelist.adjusted_salary %></li>
+    <li><strong>Total Annual Salary:</strong> <%= @employeelist.total_annual_salary %></li>
+    <li><strong>Salary Disbursed:</strong> <%= @employeelist.salary_disbursed %></li>
+  </ul>
+</body>
+</html>
+
+<%= link_to 'Edit', edit_employeelist_path(@employeelist) %> |
+<%= link_to 'Back', employeelists_path %>
+
+

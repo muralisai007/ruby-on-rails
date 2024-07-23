@@ -1,0 +1,94 @@
+<!-- app/views/employees/_form.html.erb -->
+<%= form_with(model: employeelist, local: true, id: 'employeelist_form') do |form| %>
+  <%= form.hidden_field :id, id: 'employeelist_id' %>
+  <% if employeelist.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(employeelist.errors.count, "error") %> prohibited this employeelist from being saved:</h2>
+
+      <ul>
+        <% employeelist.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :first_name, for: "employeelist_first_name" %>
+    <%= form.text_field :first_name, id: "employeelist_first_name", autocomplete: "given-name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name, for: "employeelist_last_name" %>
+    <%= form.text_field :last_name, id: "employeelist_last_name", autocomplete: "family-name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_no, for: "employeelist_phone_no" %>
+    <%= form.number_field :phone_no, id: "employeelist_phone_no", autocomplete: "tel" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, for: "employeelist_email" %>
+    <%= form.email_field :email, id: "employeelist_email", autocomplete: "email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth, for: "employeelist_date_of_birth" %>
+    <%= form.date_select :date_of_birth, id: "employeelist_date_of_birth", autocomplete: "bday" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aadhaar_input, for: "employeelist_aadhaar_input" %>
+    <%= form.text_field :aadhaar_input, id: "employeelist_aadhaar_input", autocomplete: "off" %> <!-- AADHAAR might not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :designation, for: "employeelist_designation" %>
+    <%= form.text_field :designation, id: "employeelist_designation", autocomplete: "organization-title" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, [['Active', 1], ['Inactive', 0]], {}, id: 'status', autocomplete: "off" %> <!-- Status does not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :salary %>
+    <%= form.number_field :salary, id: 'employeelist_salary', autocomplete: "off" %> <!-- Salary does not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :extra_leaves %>
+    <%= form.number_field :extra_leaves, id: 'employeelist_extra_leaves', autocomplete: "off" %> <!-- Extra leaves do not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :deductions %>
+    <%= form.number_field :deductions, readonly: true, id: 'deductions', autocomplete: "off" %> <!-- Deductions do not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :adjusted_salary %>
+    <%= form.number_field :adjusted_salary, readonly: true, id: 'adjusted_salary', autocomplete: "off" %> <!-- Adjusted salary does not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :total_annual_salary %>
+    <%= form.number_field :total_annual_salary, readonly: true, id: 'total_annual_salary', autocomplete: "off" %> <!-- Total annual salary does not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :salary_disbursed %>
+    <%= form.number_field :salary_disbursed, readonly: true, id: 'salary_disbursed', autocomplete: "off" %> <!-- Salary disbursed does not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="field">
+    <%= form.label :calculation_details, "Calculation Details" %>
+    <%= form.text_field :calculation_details, readonly: true, id: 'calculation_details', autocomplete: "off" %> <!-- Calculation details do not have a standard autocomplete attribute -->
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

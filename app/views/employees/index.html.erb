@@ -1,0 +1,53 @@
+<%# app/views/employees/index.html.erb %>
+
+
+  <div class="container mt-5">
+
+    <%= form_with url: '/employees/search', method: :post, remote: true, class: 'form-inline my-2 my-lg-0' do %>
+      
+      
+      
+      <div class="form-group">
+        <%= label_tag :status, 'Status' %>
+        <%= select_tag :status, options_for_select([['Active', 1], ['Inactive', 0]], params[:status]), include_blank: true, class: 'form-control mr-sm-2' %>
+      </div>
+      <div class="form-group">
+    <%= label_tag :salary, 'Salary' %>
+    <%= number_field_tag :salary, params[:salary], class: 'form-control' %>
+  </div>
+  
+      <%= submit_tag 'Search', class: 'btn btn-primary my-2 my-sm-0' %>
+    <% end %>
+<%# app/views/employees/index.html.erb %>
+<div class="container">
+  <%= link_to 'New Employee', new_employee_path, class: 'btn btn-success mb-3' %>
+  
+  <table class="table table-striped mt-3" id="employee">
+    <thead>
+      <tr>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Phone Number</th>
+        <th>Email</th>
+        <th>Date of Birth</th>
+        <th>Aadhaar Input</th>
+        <th>Designation</th>
+        <th>Status</th>
+        <th>Salary</th>
+        <th>Total Annual Salary</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <%= render partial: 'employee', collection: @employees, as: :employee %>
+    </tbody>
+  </table>
+  
+  <% total_salary_sum = @employees.to_a.sum { |employee| employee.salary.to_f * 12 } %>
+  <div class="total-salary mt-3">
+    <strong>Total Salary Sum: <%= clp_currency(total_salary_sum) %></strong>
+  </div>
+</div>
+
+ <div id="employee-list">
+</div>

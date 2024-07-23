@@ -1,0 +1,80 @@
+<%= form_with model: @employeelist, local: true, id: 'edit_employeelist' do |form| %>
+  <div class="field">
+    <%= form.label :first_name, for: "employeelist_first_name" %>
+    <%= form.text_field :first_name, id: "employeelist_first_name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :last_name, for: "employeelist_last_name" %>
+    <%= form.text_field :last_name, id: "employeelist_last_name" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :phone_no, for: "employeelist_phone_no" %>
+    <%= form.number_field :phone_no, id: "employeelist_phone_no" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :email, for: "employeelist_email" %>
+    <%= form.email_field :email, id: "employeelist_email" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :date_of_birth, for: "employeelist_date_of_birth" %>
+    <%= form.date_select :date_of_birth, id: "employeelist_date_of_birth" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :aadhaar_input, for: "employeelist_aadhaar_input" %>
+    <%= form.text_field :aadhaar_input, id: "employeelist_aadhaar_input" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :designation, for: "employeelist_designation" %>
+    <%= form.text_field :designation, id: "employeelist_designation" %>
+  </div>
+
+  <div class="field">
+    <%= form.label :status %>
+    <%= form.select :status, [['Active', 1], ['Inactive', 0]], {}, id: 'status' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salary %>
+    <%= form.number_field :salary, id: 'employeelist_salary' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :extra_leaves %>
+    <%= form.number_field :extra_leaves, id: 'employeelist_extra_leaves' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :deductions %>
+    <%= form.number_field :deductions, readonly: true, id: 'deductions' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :adjusted_salary %>
+    <%= form.number_field :adjusted_salary, readonly: true, id: 'adjusted_salary' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :total_annual_salary %>
+    <%= form.number_field :total_annual_salary, readonly: true, id: 'total_annual_salary' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :salary_disbursed %>
+    <%= form.number_field :salary_disbursed, readonly: true, id: 'salary_disbursed' %>
+  </div>
+
+  <div class="field">
+    <%= form.label :calculation_details, "Calculation Details" %>
+    <%= form.text_field :calculation_details, readonly: true, id: 'calculation_details' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

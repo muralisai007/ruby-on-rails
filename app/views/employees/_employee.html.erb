@@ -1,0 +1,17 @@
+<%# app/views/employees/_employee.html.erb %>
+<tr>
+  <td><%= employee.first_name %></td>
+  <td><%= employee.last_name %></td>
+  <td><%= employee.phone_no %></td>
+  <td><%= employee.email %></td>
+  <td><%= employee.date_of_birth.strftime('%Y/%m/%d') %></td>
+  <td><%= employee.aadhaar_input %></td>
+  <td><%= employee.designation %></td>
+  <td><%= employee.status == 1 ? "Active" : "Inactive" %></td>
+  <td><%= number_to_currency(employee.salary, unit: "CLP") %></td>
+  <td><%= clp_currency(employee.salary.to_i * 12) %></td>
+  <td>
+    <%= link_to 'Show', employee_path(employee), class: 'btn btn-primary' %>
+    <%= link_to 'Edit', edit_employee_path(employee), class: 'btn btn-warning' %>
+  </td>
+</tr>

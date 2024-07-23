@@ -1,0 +1,62 @@
+<div class="container">
+  <h1 class="mb-4">Employee Details</h1>
+
+  <table class="table">
+    <tbody>
+      <tr>
+        <th scope="row">First Name</th>
+        <td><%= @employee.first_name %></td>
+      </tr>
+      <tr>
+        <th scope="row">Last Name</th>
+        <td><%= @employee.last_name %></td>
+      </tr>
+      <tr>
+        <th scope="row">Phone Number</th>
+        <td><%= @employee.phone_no %></td>
+      </tr>
+      <tr>
+        <th scope="row">Email</th>
+        <td><%= @employee.email %></td>
+      </tr>
+      <tr>
+        <th scope="row">Date of Birth</th>
+        <td><%= @employee.date_of_birth %></td>
+      </tr>
+      <tr>
+        <th scope="row">Aadhaar Input</th>
+        <td><%= @employee.aadhaar_input %></td>
+      </tr>
+      <tr>
+        <th scope="row">Designation</th>
+        <td><%= @employee.designation %></td>
+      </tr>
+
+      <tr>
+          <th>Salary</th>
+          <td><%= number_to_currency(@employee.salary, unit: 'CLP $', delimiter: '.') %></td>
+        </tr>
+    <tr>
+      <th scope="row">Status</th>
+      <td><%= @employee.status == 1 ? 'Active' : 'Inactive' %></td>
+    </tr>
+
+       <tr>
+          <th>Total Annual Salary</th>
+          <td><%= number_to_currency(@employee.salary.to_i * 12, unit: 'CLP $', delimiter: '.') %></td>
+        </tr>
+    </tbody>
+  </table>
+
+  <%= link_to 'Edit', edit_employee_path(@employee), class: "btn btn-primary" %>
+  <%= link_to 'Back', employees_path, class: "btn btn-secondary" %>
+ <div class="row">
+        <div class="col-12 text-left">
+          <h3>Salary: <%= clp_currency(@employee.salary) %></h3>
+          <h3>Total Annual Salary: <%= clp_currency(@employee.salary.to_i * 12) %></h3>
+           
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
